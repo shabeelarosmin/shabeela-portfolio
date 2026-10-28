@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #080808;
+  --surface: #111111;
+  --surface-light: #191919;
+  --text: #f5f2e9;
+  --muted: #aaa69a;
+  --accent: #d6b15e;
+  --accent-light: #f1d58a;
+  --border: #39301d;
+  --gold-glow: rgba(214, 177, 94, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #080808;
+}
+
+.gold-text {
+  color: var(--accent);
+}
+
+.section {
+  padding: 90px 7%;
+  border-top: 1px solid rgba(214, 177, 94, 0.12);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.section-title p {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.section-title h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin: 12px 0;
+}
+
+.gold-card {
+  background: linear-gradient(145deg, #171717, #0d0d0d);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.gold-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 35px var(--gold-glow);
+}
+
+.gold-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #0b0905;
+  border: 1px solid var(--accent);
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.gold-button:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 65px 6%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
