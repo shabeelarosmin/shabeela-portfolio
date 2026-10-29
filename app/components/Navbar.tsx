@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X, ArrowUpRight, Code2 } from "lucide-react";
 
 const links = [
   ["Home", "#home"],
   ["About", "#about"],
+  ["Education", "#education"],
   ["Skills", "#skills"],
   ["Projects", "#projects"],
   ["Contact", "#contact"],
@@ -17,92 +18,139 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -25 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-0 z-50 border-b border-amber-200/10 bg-[#080808]/90 px-5 backdrop-blur-xl sm:px-8 lg:px-[7%]"
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="fixed inset-x-0 top-0 z-50 border-b border-[#d8b15a]/15 bg-[#080808]/85 backdrop-blur-xl"
     >
-      <div className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between gap-5">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
         {/* Logo */}
-        <a href="#home" className="group flex shrink-0 items-center gap-3">
-          <span className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-amber-200 via-amber-400 to-yellow-700 font-serif text-lg font-bold text-black shadow-[0_0_22px_rgba(214,177,94,0.16)] transition-transform duration-300 group-hover:rotate-6">
-            S.
-          </span>
+        <motion.a
+          href="#home"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => setOpen(false)}
+          className="group flex shrink-0 items-center gap-2"
+        >
+          <motion.div
+            whileHover={{ rotate: 12 }}
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#d8b15a]/40 bg-[#d8b15a]/10 text-[#f5d98b] transition group-hover:bg-[#d8b15a]/20"
+          >
+            <Code2 size={20} />
+          </motion.div>
 
-          <span className="text-sm font-bold tracking-wide text-stone-100 sm:text-base">
-            SHABEELA
-            <span className="text-amber-400">.DEV</span>
-          </span>
-        </a>
+          <div className="flex flex-col">
+            <span className="font-[var(--font-space)] text-sm font-bold tracking-[0.12em] text-white sm:text-base">
+              SHABEELA<span className="text-[#d8b15a]"></span>
+            </span>
+
+            <span className="text-[9px] tracking-[0.2em] text-neutral-500">
+              MERN DEVELOPER
+            </span>
+          </div>
+        </motion.a>
 
         {/* Desktop navigation */}
-        <nav className="hidden items-center gap-6 md:flex lg:gap-8">
-          {links.map(([label, href]) => (
-            <a
+        <div className="hidden items-center gap-5 lg:gap-7 md:flex">
+          {links.map(([label, href], index) => (
+            <motion.a
               key={label}
               href={href}
-              className="group relative py-2 text-[13px] font-medium text-stone-400 transition-colors duration-300 hover:text-amber-300"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 + index * 0.08 }}
+              whileHover={{ y: -2 }}
+              className="group relative py-2 font-[var(--font-space)] text-sm text-neutral-400 transition-colors duration-300 hover:text-[#f5d98b]"
             >
               {label}
-              <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-amber-400 transition-all duration-300 group-hover:w-full" />
-            </a>
+
+              {/* Animated golden underline */}
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-[#b8892f] to-[#ffe7a0] transition-all duration-300 group-hover:w-full" />
+            </motion.a>
           ))}
 
-          <a
+          {/* Let's Talk button */}
+          <motion.a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-amber-400/70 bg-amber-400 px-5 py-3 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200 hover:bg-amber-200 hover:shadow-[0_8px_25px_rgba(214,177,94,0.18)]"
+            whileHover={{
+              scale: 1.04,
+              boxShadow: "0 0 24px rgba(216,177,90,0.22)",
+            }}
+            whileTap={{ scale: 0.96 }}
+            className="gold-button ml-1 !gap-2 !rounded-full !px-5 !py-2.5 font-[var(--font-space)] text-sm"
           >
-            Hire Me
+            Let's Talk
             <ArrowUpRight size={16} />
-          </a>
-        </nav>
+          </motion.a>
+        </div>
 
         {/* Mobile menu button */}
-        <button
+        <motion.button
           type="button"
-          onClick={() => setOpen((previous) => !previous)}
-          aria-label={open ? "Close navigation" : "Open navigation"}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="grid size-11 place-items-center rounded-xl border border-amber-300/20 text-amber-300 transition-colors hover:bg-amber-300/10 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#d8b15a]/25 bg-[#d8b15a]/5 text-[#f5d98b] transition hover:bg-[#d8b15a]/15 md:hidden"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={open ? "close" : "menu"}
+              initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+              transition={{ duration: 0.18 }}
+              className="flex"
+            >
+              {open ? <X size={21} /> : <Menu size={21} />}
+            </motion.span>
+          </AnimatePresence>
+        </motion.button>
+      </nav>
 
       {/* Animated mobile navigation */}
       <AnimatePresence>
         {open && (
-          <motion.nav
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden border-t border-amber-200/10 md:hidden"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden border-t border-[#d8b15a]/15 bg-[#080808]/95 backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col gap-1 py-4">
+            <div className="mx-auto max-w-7xl px-5 pb-5 pt-3">
               {links.map(([label, href], index) => (
                 <motion.a
                   key={label}
                   href={href}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.04 }}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-4 py-3 text-sm text-stone-300 transition-colors hover:bg-amber-300/10 hover:text-amber-300"
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.045 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group flex items-center justify-between border-b border-white/[0.06] py-3.5 font-[var(--font-space)] text-sm text-neutral-300 transition-colors hover:text-[#f5d98b]"
                 >
-                  {label}
+                  <span>{label}</span>
+
+                  <ArrowUpRight
+                    size={16}
+                    className="text-[#d8b15a]/50 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#f5d98b]"
+                  />
                 </motion.a>
               ))}
 
-              <a
+              {/* Mobile CTA */}
+              <motion.a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="mt-2 flex items-center justify-center gap-2 rounded-full bg-amber-400 px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-amber-200"
+                whileTap={{ scale: 0.97 }}
+                className="gold-button mt-5 flex w-full justify-center !rounded-full !py-3 font-[var(--font-space)] text-sm"
               >
-                Hire Me <ArrowUpRight size={16} />
-              </a>
+                Let's Talk
+                <ArrowUpRight size={17} />
+              </motion.a>
             </div>
-          </motion.nav>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.header>

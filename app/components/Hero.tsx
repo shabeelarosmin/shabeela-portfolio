@@ -1,258 +1,267 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import {
-  ArrowDown,
-  ArrowDownRight,
-  ArrowUpRight,
-  Code2,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { ArrowDown, ArrowUpRight, Code2, Mail } from "lucide-react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+
+const GoldScene = dynamic(() => import("./GoldScene"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[320px] animate-pulse rounded-full bg-[#d8b15a]/5 sm:h-[430px]" />
+  ),
+});
+
+const technologies = ["MongoDB", "Express.js", "React", "Node.js"];
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate flex min-h-screen scroll-mt-20 items-center overflow-hidden bg-[#080808] px-6 pb-16 pt-28 text-white sm:px-10 lg:px-16"
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#080808] px-5 pb-20 pt-28 text-white md:px-10"
     >
       {/* Background glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-40 top-20 -z-10 h-80 w-80 rounded-full bg-amber-400/10 blur-[120px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-10 -z-10 h-96 w-96 rounded-full bg-yellow-600/10 blur-[130px]"
-      />
+      <div className="pointer-events-none absolute -left-20 top-1/4 h-72 w-72 rounded-full bg-[#b8892f]/10 blur-[100px]" />
 
-      {/* Subtle grid */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
-          backgroundSize: "55px 55px",
-          maskImage: "linear-gradient(to bottom, black, transparent 90%)",
-        }}
-      />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 rounded-full bg-[#d8b15a]/5 blur-[100px]" />
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
-        {/* Hero content */}
+      <div className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-[#d8b15a]/5 blur-[100px]" />
+
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 md:grid-cols-2">
+        {/* LEFT CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -45 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
           className="relative z-10"
         >
-          {/* Availability */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-amber-300/20 bg-amber-300/[0.06] px-4 py-2"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-300" />
-            </span>
-            <span className="text-[10px] font-semibold tracking-[0.2em] text-amber-200 sm:text-xs">
-              AVAILABLE FOR OPPORTUNITIES
-            </span>
-          </motion.div>
-
-          {/* Heading */}
-          <h1 className="text-4xl font-bold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl xl:text-7xl">
-            Hi, I’m
-            <br />
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.35, duration: 0.8 }}
-              className="mt-2 inline-block bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text pb-2 text-transparent"
-            >
-              Shabeela Rosmin.
-            </motion.span>
-          </h1>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="mt-5 text-xl font-medium text-neutral-200 sm:text-2xl"
-          >
-            Web Developer <span className="text-amber-400">&amp;</span> Creative
-            Thinker
-          </motion.h2>
-
+          {/* Introduction */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.7 }}
-            className="mt-6 max-w-xl text-base leading-8 text-neutral-400 sm:text-lg"
+            transition={{ delay: 0.2 }}
+            className="mb-5 flex items-center gap-3 font-[var(--font-space)] text-xs tracking-[0.25em] text-[#d8b15a] sm:text-sm"
           >
-            I build modern, beautiful, and user-friendly digital experiences
-            with clean code and creative ideas.
+            <span className="h-px w-9 bg-[#d8b15a]" />
+            HELLO, I'M SHABEELA ROSMIN
           </motion.p>
 
-          {/* Buttons */}
+          {/* Main heading */}
+          <h1 className="font-[var(--font-playfair)] text-5xl font-bold leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">
+            Creative
+            <br />
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.7 }}
+              className="gold-text inline-block"
+            >
+              MERN Stack
+            </motion.span>
+            <br />
+            <span className="text-neutral-300">
+              Developer<span className="text-[#d8b15a]">.</span>
+            </span>
+          </h1>
+
+          {/* Animated subtitle */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.55 }}
+            className="mt-5 flex items-center gap-2 font-[var(--font-space)] text-sm text-[#d8b15a] sm:text-base"
+          >
+            <Code2 size={18} />
+            <span>Building ideas into digital experiences.</span>
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65 }}
+            className="mt-5 max-w-lg font-[var(--font-poppins)] text-sm leading-7 text-neutral-400 sm:text-base"
+          >
+            I'm Shabeela Ros, a MERN Stack Developer passionate about building
+            responsive websites and interactive web applications. I enjoy
+            creating clean user interfaces and turning ideas into meaningful
+            digital experiences using modern web technologies.
+          </motion.p>
+
+          {/* Technology badges */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="mt-5 flex flex-wrap gap-2"
+          >
+            {technologies.map((tech, index) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.85 + index * 0.1 }}
+                whileHover={{ y: -4, scale: 1.04 }}
+                className="rounded-full border border-[#d8b15a]/25 bg-[#d8b15a]/5 px-3 py-1.5 font-[var(--font-space)] text-xs text-[#e7cf96]"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </motion.div>
+
+          {/* CTA buttons */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65, duration: 0.7 }}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            transition={{ delay: 1 }}
+            className="mt-8 flex flex-wrap gap-4"
           >
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-amber-300 to-yellow-500 px-6 py-3.5 text-sm font-bold text-black shadow-lg shadow-amber-500/10 transition-shadow hover:shadow-amber-400/25 sm:text-base"
+              className="gold-button inline-flex items-center gap-2"
             >
               Explore My Work
-              <ArrowDownRight
-                size={19}
-                className="transition-transform group-hover:translate-x-1 group-hover:translate-y-1"
-              />
+              <ArrowUpRight size={18} />
             </motion.a>
 
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-amber-300/50 hover:bg-amber-300/[0.06] sm:text-base"
+              className="inline-flex items-center rounded-full border border-[#d8b15a]/40 px-6 py-3 font-[var(--font-space)] text-sm text-[#f5d98b] transition duration-300 hover:bg-[#d8b15a]/10 hover:shadow-[0_0_20px_#d8b15a15]"
             >
-              Let’s Talk
-              <ArrowUpRight
-                size={18}
-                className="text-amber-300 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              />
+              Contact Me
             </motion.a>
           </motion.div>
 
-          {/* Email link */}
-          <motion.a
-            href="mailto:your.email@example.com"
-            whileHover={{ x: 4 }}
-            className="mt-8 inline-flex items-center gap-3 text-sm text-neutral-400 transition-colors hover:text-amber-300"
+          {/* Social links */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.6 }}
+            className="mt-8 flex items-center gap-4"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03]">
-              <Mail size={16} className="text-amber-300" />
+            <span className="mr-1 font-[var(--font-space)] text-xs tracking-wider text-neutral-500">
+              LET'S CONNECT
             </span>
-            Let’s create something meaningful together
-          </motion.a>
+
+            {/* GitHub */}
+            <motion.a
+              href="https://github.com/YOUR_USERNAME"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              whileHover={{ y: -4, scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-full border border-white/10 p-2.5 text-neutral-400 transition duration-300 hover:border-[#d8b15a] hover:text-[#f5d98b] hover:shadow-[0_0_18px_#d8b15a25]"
+            >
+              <FaGithub size={18} />
+            </motion.a>
+
+            {/* LinkedIn */}
+            <motion.a
+              href="https://www.linkedin.com/in/YOUR_USERNAME"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              whileHover={{ y: -4, scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-full border border-white/10 p-2.5 text-neutral-400 transition duration-300 hover:border-[#d8b15a] hover:text-[#f5d98b] hover:shadow-[0_0_18px_#d8b15a25]"
+            >
+              <FaLinkedinIn size={18} />
+            </motion.a>
+
+            {/* Email */}
+            <motion.a
+              href="mailto:your-email@example.com"
+              aria-label="Email"
+              whileHover={{ y: -4, scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-full border border-white/10 p-2.5 text-neutral-400 transition duration-300 hover:border-[#d8b15a] hover:text-[#f5d98b] hover:shadow-[0_0_18px_#d8b15a25]"
+            >
+              <Mail size={18} />
+            </motion.a>
+          </motion.div>
         </motion.div>
 
-        {/* Animated visual */}
+        {/* RIGHT: 3D DEVELOPER SCENE */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 25 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-          className="relative mx-auto flex w-full max-w-md items-center justify-center py-8 lg:max-w-none"
+          initial={{ opacity: 0, scale: 0.85, x: 30 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.25 }}
+          className="relative mx-auto w-full max-w-xl"
         >
-          {/* Decorative rings */}
+          {/* Animated glow */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-            className="absolute h-[290px] w-[290px] rounded-full border border-dashed border-amber-300/20 sm:h-[370px] sm:w-[370px]"
+            animate={{
+              scale: [1, 1.08, 1],
+              opacity: [0.25, 0.5, 0.25],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="pointer-events-none absolute inset-10 rounded-full bg-[#d8b15a]/15 blur-[70px]"
           />
-          <div className="absolute h-[250px] w-[250px] rounded-full border border-amber-300/10 sm:h-[320px] sm:w-[320px]" />
 
-          {/* Main card */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-[250px] overflow-hidden rounded-[2rem] border border-amber-300/25 bg-gradient-to-br from-[#19160d] via-[#101010] to-[#080808] p-5 shadow-2xl shadow-amber-500/[0.08] sm:w-[300px]"
-          >
-            {/* Code decoration */}
-            <div className="absolute inset-0 overflow-hidden p-5 font-mono text-xs leading-7 text-amber-300/[0.12]">
-              <p>const developer = {"{"}</p>
-              <p className="pl-4">creative: true,</p>
-              <p className="pl-4">ideas: "limitless",</p>
-              <p className="pl-4">build: "with passion"</p>
-              <p>{"}"}</p>
-              <p className="mt-2">{"// Turning ideas into reality"}</p>
-            </div>
+          <div className="relative z-10">
+            <GoldScene />
+          </div>
 
-            <div className="relative z-10">
-              <div className="flex items-center justify-between">
-                <div className="flex gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/60" />
-                </div>
-                <Code2 size={18} className="text-amber-300" />
-              </div>
-
-              <div className="flex min-h-[245px] flex-col items-center justify-center sm:min-h-[285px]">
-                <motion.div
-                  animate={{ rotate: [0, 4, -4, 0] }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="mb-5 flex h-32 w-32 items-center justify-center rounded-full border border-amber-300/25 bg-gradient-to-br from-amber-300/15 to-yellow-600/5 text-7xl shadow-[0_0_60px_rgba(251,191,36,0.08)] sm:h-36 sm:w-36 sm:text-8xl"
-                  role="img"
-                  aria-label="Developer illustration"
-                >
-                  👩🏻‍💻
-                </motion.div>
-
-                <h3 className="text-lg font-bold tracking-wide text-white">
-                  Shabeela Rosmin
-                </h3>
-                <p className="mt-2 text-xs tracking-[0.2em] text-amber-300">
-                  CREATIVE DEVELOPER
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs text-neutral-400">
-                <span>Design. Develop. Deliver.</span>
-                <Sparkles size={16} className="text-amber-300" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Floating badges */}
+          {/* Floating specialization card */}
           <motion.div
             animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-1 top-12 rounded-xl border border-amber-300/20 bg-[#12110d]/95 px-3 py-3 shadow-xl backdrop-blur sm:left-0 sm:px-4"
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute left-0 top-[20%] hidden rounded-xl border border-[#d8b15a]/30 bg-[#0b0b0b]/90 px-4 py-3 shadow-lg backdrop-blur-md sm:block"
           >
-            <div className="flex items-center gap-2.5">
-              <Sparkles size={18} className="text-amber-300" />
-              <span className="text-xs font-medium text-neutral-200 sm:text-sm">
-                Creative Ideas
-              </span>
-            </div>
+            <p className="font-[var(--font-space)] text-xs text-neutral-500">
+              SPECIALIZATION
+            </p>
+            <p className="mt-1 font-[var(--font-jetbrains)] text-sm text-[#f5d98b]">
+              {"< Full Stack />"}
+            </p>
           </motion.div>
 
+          {/* Floating focus card */}
           <motion.div
             animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -right-1 bottom-12 rounded-xl border border-amber-300/20 bg-[#12110d]/95 px-3 py-3 shadow-xl backdrop-blur sm:right-0 sm:px-4"
+            transition={{
+              duration: 3.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-[14%] right-0 hidden rounded-xl border border-[#d8b15a]/30 bg-[#0b0b0b]/90 px-4 py-3 shadow-lg backdrop-blur-md sm:block"
           >
-            <div className="flex items-center gap-2.5">
-              <Code2 size={18} className="text-amber-300" />
-              <span className="text-xs font-medium text-neutral-200 sm:text-sm">
-                Clean Code
-              </span>
-            </div>
+            <p className="font-[var(--font-space)] text-xs text-neutral-500">
+              CURRENT FOCUS
+            </p>
+            <p className="mt-1 font-[var(--font-space)] text-sm text-[#f5d98b]">
+              Web Development ✦
+            </p>
           </motion.div>
+
+          <p className="mt-2 text-center font-[var(--font-space)] text-xs tracking-[0.3em] text-[#9d8248]">
+            DESIGN · DEVELOP · DEPLOY
+          </p>
         </motion.div>
       </div>
 
-      {/* Scroll hint */}
+      {/* Scroll indicator */}
       <motion.a
         href="#about"
-        aria-label="Scroll to About section"
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral-500 transition-colors hover:text-amber-300 md:flex"
+        aria-label="Scroll to About"
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 text-[#d8b15a]"
       >
-        <span className="text-[10px] tracking-[0.25em]">SCROLL TO EXPLORE</span>
-        <ArrowDown size={16} />
+        <ArrowDown size={22} />
       </motion.a>
     </section>
   );
