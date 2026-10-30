@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#080808] px-5 pb-20 pt-28 text-white md:px-10"
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#080808] px-5 pb-20 pt-28 text-white md:px-16 lg:px-20"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute -left-20 top-1/4 h-72 w-72 rounded-full bg-[#b8892f]/10 blur-[100px]" />
@@ -27,7 +27,7 @@ export default function Hero() {
 
       <div className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-[#d8b15a]/5 blur-[100px]" />
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 md:grid-cols-2">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 md:grid-cols-2">
         {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, x: -45 }}
@@ -60,7 +60,7 @@ export default function Hero() {
             </motion.span>
             <br />
             <span className="text-neutral-300">
-              Developer<span className="text-[#d8b15a]">.</span>
+              Developer<span className="text-[#d8b15a]"></span>
             </span>
           </h1>
 
@@ -82,7 +82,7 @@ export default function Hero() {
             transition={{ delay: 0.65 }}
             className="mt-5 max-w-lg font-[var(--font-poppins)] text-sm leading-7 text-neutral-400 sm:text-base"
           >
-            I'm Shabeela Ros, a MERN Stack Developer passionate about building
+            I'm Shabeela Rosmin, a MERN Stack Developer passionate about building
             responsive websites and interactive web applications. I enjoy
             creating clean user interfaces and turning ideas into meaningful
             digital experiences using modern web technologies.
