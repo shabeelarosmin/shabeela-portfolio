@@ -93,3 +93,12 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background: #080808;
+  color: white;
+}
