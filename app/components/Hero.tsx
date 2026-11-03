@@ -82,10 +82,10 @@ export default function Hero() {
             transition={{ delay: 0.65 }}
             className="mt-5 max-w-lg font-[var(--font-poppins)] text-sm leading-7 text-neutral-400 sm:text-base"
           >
-            I'm Shabeela Rosmin, a MERN Stack Developer passionate about building
-            responsive websites and interactive web applications. I enjoy
-            creating clean user interfaces and turning ideas into meaningful
-            digital experiences using modern web technologies.
+            I'm Shabeela Rosmin, a MERN Stack Developer passionate about
+            building responsive websites and interactive web applications. I
+            enjoy creating clean user interfaces and turning ideas into
+            meaningful digital experiences using modern web technologies.
           </motion.p>
 
           {/* Technology badges */}
